@@ -1,0 +1,46 @@
+- name: Install i3 packages
+  become: true
+  community.general.pacman:
+    name:
+      - xorg-server
+      - xorg-xinit
+      - xfce4-notifyd
+      - i3-wm
+      - i3status
+      - i3blocks
+      - i3lock-color
+      - xautolock
+      - dmenu
+      - xdotool
+      - yad
+      - sysstat
+      - gnome-screenshot
+  tags: i3
+
+- name: Install i3 packages
+  aur:
+    name:
+      - diodon-git
+  tags: i3
+
+- name: "Ensure fontconfig dir exists"
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/i3"
+    state: directory
+  tags: i3
+
+- name: "Copy .xinitrc, .Xresources and i3 config"
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+  with_items:
+    - ".xinitrc"
+    - ".Xresources"
+    - ".config/i3/config"
+  tags: i3
+
+- name: "Copy i3blocks"
+  ansible.builtin.copy:
+    src: "files/i3blocks"
+    dest: "{{ ansible_env.HOME }}/.config"
+  tags: i3

@@ -1,0 +1,17 @@
+[core]
+	hookspath = ~/git/hooks
+	excludesfile = ~/git/ignore
+	editor = vim
+
+[pull]
+	rebase = false
+
+[user]
+	name = {{ git_config_name }}
+	email = {{ git_config_email }}
+	username = {{ git_config_username }}
+
+{{ git_config_extra }}
+
+[init]
+	defaultBranch = master

@@ -1,0 +1,47 @@
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=$HOME/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
+separator_block_width=15
+markup=none
+interval=1
+
+# [spotify]
+# interval=10
+
+[volume]
+label=🔉 
+interval=10
+STEP=5%
+MIXER=default
+
+# [bandwidth]
+# markup=pango
+
+[iface]
+color=#00FF00
+interval=10F
+
+[memory]
+label=MEM 
+min_width=2
+
+[cpu_usage]
+label=CPU 
+min_width=CPU 100.00%
+#separator=false
+
+[battery]
+label=🔋 
+interval=30
+
+# [time]
+# STRFTIME_FORMAT=%Y-%m-%d %H:%M
+# TZONES=,
+# DEFAULT_TZ=,
+
+[calendar]
+LABEL=📅 
+DATEFMT=+%Y-%m-%d %H:%M

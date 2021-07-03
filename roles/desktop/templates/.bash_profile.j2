@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# git custom
+export PATH=$PATH:$HOME/git/commands
+export EDITOR=/usr/bin/vim
+
+# go paths
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
+export GO111MODULE=on
+##TODO: add variable here for GOPRIVATE
+export GOPRIVATE=gitlab.com*
+
+# kubectl
+##TODO: VAR FOR KUBECONFIG
+export KUBECONFIG=$HOME/.kube/config:$HOME/.k3d/kubeconfig-k3s-default.yaml:$HOME/.kube/tibia-cardinal:$HOME/.kube/new-tibia-cardinal
+
+# kube_ps1
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_NS_ENABLE=true
+export KUBE_PS1_PREFIX=' ['
+export KUBE_PS1_SUFFIX=]
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
+
+[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc

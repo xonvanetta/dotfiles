@@ -1,0 +1,67 @@
+---
+- name: "Install tibia and orbweaver"
+  hosts: localhost
+  connection: local
+  roles:
+    - kewlfft.aur
+  handlers:
+    - name: systemd-hwdb & udevadm trigger
+      become: yes
+      ansible.builtin.command: systemd-hwdb update && udevadm trigger
+  tasks:
+    - name: "Install tibia and dependencies"
+      aur:
+        name:
+          - tibia
+          - ttf-ms-fonts
+
+    - name: "Install orbweaver keybindings"
+      become: true
+      ansible.builtin.copy:
+        dest: /etc/udev/hwdb.d/95-orbweaver.hwdb
+        content: |
+          evdev:input:b0003v1532p0113e0111*
+          # Left keys
+           KEYBOARD_KEY_70035=esc
+           KEYBOARD_KEY_70039=leftshift
+           KEYBOARD_KEY_700e1=leftctrl
+          # Arrows keys
+           KEYBOARD_KEY_7001b=down
+           KEYBOARD_KEY_70016=down
+           KEYBOARD_KEY_7001a=up
+           KEYBOARD_KEY_70007=right
+           KEYBOARD_KEY_70004=left
+          # Sidestep keys
+           KEYBOARD_KEY_7001d=kp1
+           KEYBOARD_KEY_70006=kp3
+           KEYBOARD_KEY_70014=kp7
+           KEYBOARD_KEY_70008=kp9
+          #
+           KEYBOARD_KEY_7001e=f2
+           KEYBOARD_KEY_7001f=f3
+      notify: systemd-hwdb & udevadm trigger
+
+    #https://tibia.fandom.com/wiki/Linux_Client#User_Settings
+    - name: "Ensure fontconfig dir exists"
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/fontconfig"
+        state: directory
+
+    - name: "Fix hintstyle"
+      ansible.builtin.copy:
+        dest: "{{ ansible_env.HOME }}/.config/fontconfig/fonts.conf"
+        content: |+
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+
+            <match target="font">
+              <test name="family" compare="contains">
+                <string>Verdana</string>
+              </test>
+              <edit name="hintstyle" mode="assign">
+                <const>hintfull</const>
+              </edit>
+            </match>
+
+          </fontconfig>

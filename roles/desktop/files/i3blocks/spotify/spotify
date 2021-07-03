@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for pid in $(xdotool search --class spotify); do
+    name=$(xdotool getwindowname $pid)
+    if [[ $name == "spotify" ]]; then
+        continue
+    fi
+
+    echo $name
+    echo $name
+done

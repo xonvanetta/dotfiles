@@ -1,0 +1,9 @@
+#!/bin/sh
+echo "commit type is: $2"
+
+if [[ $2 != '' ]]; then
+	exit 0
+fi
+
+issue=`git rev-parse --abbrev-ref HEAD | cut -d '/' -f 2`
+printf "\nResolves: $issue" >> $1

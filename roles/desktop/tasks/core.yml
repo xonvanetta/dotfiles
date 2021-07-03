@@ -1,0 +1,40 @@
+- name: Install core packages
+  become: true
+  community.general.pacman:
+    name:
+      - clamav
+      - networkmanager
+      - network-manager-applet
+      - openssh
+      - noto-fonts-cjk
+      - noto-fonts-extra
+      - noto-fonts-emoji
+      - ttf-jetbrains-mono
+      - docker
+  tags: core
+
+- name: Ensure group docker exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+  tags: core
+
+- name: Add ansible_env.USER to docker
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups: docker
+    append: yes
+  tags: core
+
+- name: start core services
+  become: true
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - NetworkManager
+    - clamav-daemon
+    - clamav-freshclam
+    - docker
+  tags: core

@@ -1,0 +1,7 @@
+---
+- name: "Install desktop"
+  hosts: localhost
+  connection: local
+  roles:
+    - kewlfft.aur
+    - role: desktop

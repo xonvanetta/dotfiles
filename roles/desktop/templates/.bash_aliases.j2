@@ -1,0 +1,13 @@
+#!/bin/sh
+
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias np='nano -w PKGBUILD'
+alias more=less
+alias ll='ls -laFh --color=auto'
+alias ssh='TERM=xterm-256color ssh'
+
+alias gorunenv='env `cat $(find . -name .env) | xargs` go run ./...'
+alias gorun='go run ./...'
+alias gobuild='CGO_ENABLED=0 GOOS=linux go build'

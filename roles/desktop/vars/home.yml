@@ -1,0 +1,8 @@
+xrandr_start_options: "--output DVI-D-1 --off --output DP-1 --off --output DP-2 --off --output HDMI-1 --rate 144 --mode 2560x1440 --pos 2560x0 --rotate normal --output DP-3 --off --output DP-1-8 --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1-1 --off"
+
+git_config_name: "Vanetta"
+git_config_email: "11271952+xonvanetta@users.noreply.github.com"
+git_config_username: "xonvanetta"
+git_config_extra: |
+  [url "git@gitlab.com:"]
+  	insteadOf = https://gitlab.com/

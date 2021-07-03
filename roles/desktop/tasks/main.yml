@@ -1,0 +1,56 @@
+
+#
+##keyboard layout
+#localectl set-x11-keymap se
+
+
+- name: pre_load vars based on hostname
+  ansible.builtin.include_vars:
+    file: "{{ ansible_hostname }}.yml"
+  tags: always
+
+- include_tasks: core.yml
+  tags: core
+
+- include_tasks: bash.yml
+  tags: bash
+
+- include_tasks: git.yml
+  tags: git
+
+- name: Install audio packages
+  become: true
+  community.general.pacman:
+    name:
+      - alsa-lib
+      - alsa-utils
+      - pulseaudio
+      - pavucontrol
+      - pulseaudio-alsa
+  tags: audio
+
+- include_tasks: i3.yml
+  tags: i3
+
+- name: Install code packages
+  become: true
+  community.general.pacman:
+    name:
+      - vim
+      - code
+      - go
+      - nvm
+      - kubectl
+      - kubectx
+      - dbeaver
+  tags: code
+
+- name: Install code packages
+  aur:
+    name:
+      - jetbrains-toolbox
+      - rancher-k3d-bin
+      - stern-bin
+      - postman-bin
+      - google-chrome
+  tags: code

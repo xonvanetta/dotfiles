@@ -1,0 +1,27 @@
+- name: Install bash packages
+  become: true
+  community.general.pacman:
+    name:
+      - rxvt-unicode
+      - bash-completion
+      - fzf
+  tags: bash
+
+- name: Install bash packages
+  aur:
+    name:
+      - diodon-git
+      - urxvt-resize-font-git
+      - kube-ps1
+  tags: bash
+
+- name: "Copy bash files"
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+  with_items:
+    - ".bash_profile"
+    - ".bashrc"
+    - ".bash_aliases"
+    - ".inputrc"
+  tags: bash
