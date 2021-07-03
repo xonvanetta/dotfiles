@@ -1,6 +1,6 @@
-#dotfiles with ansible
+# dotfiles with ansible
 
-##TODO
+## TODO
 * add timer/config based security scans with clamAV
 
 
