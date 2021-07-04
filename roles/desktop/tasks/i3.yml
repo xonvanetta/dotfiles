@@ -8,7 +8,7 @@
       - i3-wm
       - i3status
       - i3blocks
-      - i3lock-color
+      - i3lock-color-git
       - xautolock
       - dmenu
       - xdotool
