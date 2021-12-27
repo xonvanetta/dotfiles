@@ -39,6 +39,14 @@
     - ".config/i3/config"
   tags: i3
 
+- name: "Copy etc/X11/xorg.conf"
+  become: true
+  ansible.builtin.copy:
+    content: "{{ etc_X11_xorg_conf }}"
+    dest: "/etc/X11/xorg.conf"
+  tags: i3
+  when: etc_X11_xorg_conf | length > 0
+
 - name: "Copy i3blocks"
   ansible.builtin.copy:
     src: "files/i3blocks"

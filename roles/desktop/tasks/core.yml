@@ -3,6 +3,8 @@
   community.general.pacman:
     name:
       - clamav
+      - pwgen
+      - pciutils
       - networkmanager
       - network-manager-applet
       - openssh
@@ -11,6 +13,8 @@
       - noto-fonts-emoji
       - ttf-jetbrains-mono
       - docker
+      - tcpdump
+      - gnu-netcat
   tags: core
 
 - name: Ensure group docker exists

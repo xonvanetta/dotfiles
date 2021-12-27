@@ -7,7 +7,17 @@ alias np='nano -w PKGBUILD'
 alias more=less
 alias ll='ls -laFh --color=auto'
 alias ssh='TERM=xterm-256color ssh'
+alias encode='base64_encode'
+alias decode='base64_decode'
 
 alias gorunenv='env `cat $(find . -name .env) | xargs` go run ./...'
 alias gorun='go run ./...'
 alias gobuild='CGO_ENABLED=0 GOOS=linux go build'
+
+function base64_encode {
+  echo -n "$1" | base64 -w0
+}
+
+function base64_decode {
+  echo -n "$1" | base64 -d
+}

@@ -54,3 +54,14 @@
       - postman-bin
       - google-chrome
   tags: code
+
+- name: Install additional packages pacman
+  become: true
+  community.general.pacman:
+    name: "{{ additionalPackages }}"
+  when: additionalPackages | length > 0
+
+- name: Install additional packages aur
+  aur:
+    name: "{{ additionalPackagesAur }}"
+  when: additionalPackagesAur | length > 0

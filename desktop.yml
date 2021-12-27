@@ -5,3 +5,4 @@
   roles:
     - kewlfft.aur
     - role: desktop
+    - cloudalchemy.node_exporter

@@ -4,3 +4,8 @@ git_config_name: ""
 git_config_email: ""
 git_config_username: ""
 git_config_extra: ""
+
+additionalPackages: []
+additionalPackagesAur: []
+
+etc_X11_xorg_conf: ""
