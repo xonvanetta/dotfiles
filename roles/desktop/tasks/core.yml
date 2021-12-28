@@ -24,6 +24,7 @@
   tags: core
 
 - name: Add ansible_env.USER to docker
+  become: true
   user:
     name: "{{ ansible_env.USER }}"
     groups: docker

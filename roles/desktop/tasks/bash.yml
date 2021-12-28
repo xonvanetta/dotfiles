@@ -8,7 +8,7 @@
   tags: bash
 
 - name: Install bash packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - diodon-git
       - urxvt-resize-font-git

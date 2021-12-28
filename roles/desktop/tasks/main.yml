@@ -46,7 +46,7 @@
   tags: code
 
 - name: Install code packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - jetbrains-toolbox
       - rancher-k3d-bin
@@ -62,6 +62,6 @@
   when: additionalPackages | length > 0
 
 - name: Install additional packages aur
-  aur:
+  kewlfft.aur.aur:
     name: "{{ additionalPackagesAur }}"
   when: additionalPackagesAur | length > 0

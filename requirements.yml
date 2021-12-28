@@ -1,11 +1,11 @@
 ---
 roles:
-  - name: kewlfft.aur
-    version: v0.43
   - name: cloudalchemy.node_exporter
     version: 2.0.0
 
 collections:
+  - name: kewlfft.aur
+    version: 0.10.0
 #   Install a collection from Ansible Galaxy.
 #  - name: geerlingguy.php_roles
 #    version: 0.9.3

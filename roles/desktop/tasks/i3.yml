@@ -1,3 +1,10 @@
+- name: Remove i3 packages
+  become: true
+  community.general.pacman:
+    name:
+      - i3-gaps
+    state: absent
+
 - name: Install i3 packages
   become: true
   community.general.pacman:
@@ -8,7 +15,6 @@
       - i3-wm
       - i3status
       - i3blocks
-      - i3lock-color-git
       - xautolock
       - dmenu
       - xdotool
@@ -18,9 +24,10 @@
   tags: i3
 
 - name: Install i3 packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - diodon-git
+      - i3lock-color-git
   tags: i3
 
 - name: "Ensure fontconfig dir exists"
