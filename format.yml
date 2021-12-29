@@ -1,0 +1,133 @@
+---
+- name: Setup and format drive
+  hosts: localhost
+  connection: local
+  vars_prompt:
+#    - name: loadkeys
+#      prompt: Which loadkeys to use
+#      private: no
+#    - name: device
+#      prompt: Which device to install?
+#      private: no
+#    - name: passphrase
+#      prompt: Passphrase for LUKS partition?
+  vars:
+    device: /dev/nvme0n1
+    loadkeys: se-lat6
+    passphrase: xxxx
+    user: fabbe
+    host: burk
+  tasks:
+#    - name: loadkeys {{ loadkeys }}
+#      become: true
+#      ansible.builtin.command: "loadkeys {{ loadkeys }}"
+#
+#    - name: enable systemd-timesyncd
+#      ansible.builtin.service:
+#        name: systemd-timesyncd
+#        state: started
+#        enabled: true
+#
+#    - name: set stable pacman-mirrors with --geoip
+#      become: true
+#      ansible.builtin.command: pacman-mirrors --set-branch stable --api --geoip
+#
+#    - name: update keyring
+#      become: true
+#      community.general.pacman:
+#        name:
+#          - archlinux-keyring
+#          - manjaro-keyring
+#        state: present
+#        update_cache: yes
+#
+#    - name: pacman-key init
+#      become: true
+#      ansible.builtin.command: pacman-key --init
+#
+#    - name: pacman-key populate
+#      become: true
+#      ansible.builtin.command: pacman-key --populate archlinux manjaro
+#
+#    - name: pacman-key refresh
+#      become: true
+#      ansible.builtin.command: pacman-key --refresh-keys
+
+    - name: create boot partition
+      become: true
+      community.general.parted:
+        device: "{{ device }}"
+        number: 1
+        label: gpt
+        name: EFI system partition
+        state: present
+        flags: [ esp ]
+        part_start: "0%"
+        part_end: "512MiB"
+
+    - name: create fat32 filesystem on boot partition
+      become: true
+      community.general.filesystem:
+        fstype: vfat
+        opts: "-F 32"
+        dev: "{{ device }}p1"
+
+    - name: create primary partition
+      become: true
+      community.general.parted:
+        device: "{{ device }}"
+        number: 2
+        label: gpt
+        name: root
+        state: present
+        part_start: 512MiB
+        part_end: 100%
+
+#    - name: create LUKS container with a passphrase
+#      become: true
+#      community.crypto.luks_device:
+#        device: "{{ device }}p2"
+#        state: opened
+#        name: cryptroot
+#        passphrase: "{{ passphrase }}"
+
+#    - name: open LUKS container with a passphrase
+#      become: true
+#      community.crypto.luks_device:
+#        device: "{{ device }}p2"
+#        state: opened
+#        name: cryptroot
+#        passphrase: "{{ passphrase }}"
+
+    - name: create a ext4 filesystem on cryptroot
+      become: true
+      community.general.filesystem:
+        fstype: ext4
+        dev: "/dev/mapper/cryptoroot"
+#        opts: -cc
+
+    # Before 2.3, option 'name' was used instead of 'path'
+    - name: mount root to /mnt
+      become: true
+      ansible.posix.mount:
+        path: /mnt
+        src: "/dev/mapper/cryptoroot"
+        fstab: /tmp/test_fstab
+        fstype: ext4
+        state: mounted
+
+    - name: mount EFI to /mnt/boot/efi
+      become: true
+      ansible.posix.mount:
+        path: /mnt/boot/efi
+        src: "{{ device }}p1"
+        fstab: /tmp/test_fstab
+        fstype: vfat
+        state: mounted
+#TOOD
+# 1. bash -c 'fstabgen /mnt >> /mnt/etc/fstab'
+# 2. script for chroot
+# 2.1 
+#https://amaikinono.github.io/install-minimal-manjaro.html
+#https://wiki.archlinux.org/title/installation_guide#Installation
+#
