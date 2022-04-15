@@ -2,15 +2,16 @@
 - name: "Install tibia and orbweaver"
   hosts: localhost
   connection: local
-  roles:
-    - kewlfft.aur
   handlers:
-    - name: systemd-hwdb & udevadm trigger
+    - name: systemd-hwdb
       become: yes
-      ansible.builtin.command: systemd-hwdb update && udevadm trigger
+      ansible.builtin.command: systemd-hwdb update
+    - name: udevadm
+      become: yes
+      ansible.builtin.command: udevadm trigger
   tasks:
     - name: "Install tibia and dependencies"
-      aur:
+      kewlfft.aur.aur:
         name:
           - tibia
           - ttf-ms-fonts
@@ -39,7 +40,9 @@
           #
            KEYBOARD_KEY_7001e=f2
            KEYBOARD_KEY_7001f=f3
-      notify: systemd-hwdb & udevadm trigger
+      notify: 
+        - systemd-hwdb
+        - udevadm trigger
 
     #https://tibia.fandom.com/wiki/Linux_Client#User_Settings
     - name: "Ensure fontconfig dir exists"

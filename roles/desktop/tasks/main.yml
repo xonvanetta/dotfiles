@@ -29,6 +29,14 @@
       - pulseaudio-alsa
   tags: audio
 
+- name: Fix Cork for pulse
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pulse/default.pa
+    regexp: '^load-module module-role-cork'
+    line: '#load-module module-role-cork'
+  tags: audio
+
 - include_tasks: i3.yml
   tags: i3
 
@@ -43,6 +51,7 @@
       - kubectl
       - kubectx
       - dbeaver
+      - terraform
   tags: code
 
 - name: Install code packages
@@ -53,6 +62,7 @@
       - stern-bin
       - postman-bin
       - google-chrome
+      - go-jsonnet
   tags: code
 
 - name: Install additional packages pacman

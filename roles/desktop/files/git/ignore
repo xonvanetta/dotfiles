@@ -3,4 +3,4 @@
 
 #vendor
 /vendor
-#baja
+.env

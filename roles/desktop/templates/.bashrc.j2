@@ -18,6 +18,7 @@ source <(stern --completion bash)
 HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=25000
 HISTFILESIZE=25000
+HISTTIMEFORMAT="%d/%m/%y %T"
 shopt -s histappend
 
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"

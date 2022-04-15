@@ -1,6 +1,7 @@
-- name: "copy git directory for hooks and ignore"
+- name: "copy git directory for commands,hooks and ignore"
   ansible.builtin.copy:
     src: "files/git"
+    mode: a+x
     dest: "{{ ansible_env.HOME }}"
   tags: git
 

@@ -1,0 +1,27 @@
+---
+- name: Create user and set root password
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    user: fabbe
+    password: "x"
+    root_password: "x"
+  tasks:
+    - name: set root password
+      ansible.builtin.user:
+        name: "root"
+        password: "{{ root_password }}"
+        state: present
+
+    - name: add user {{ user }}
+      ansible.builtin.user:
+        name: "{{ user }}"
+        password: "{{ password }}"
+        state: present
+
+#    - name: add {{ user }} to wheel group
+#      ansible.builtin.user:
+#        name: "{{ user }}"
+#        password: "{{ password }}"
+#        state: present

@@ -3,6 +3,5 @@
   hosts: localhost
   connection: local
   roles:
-    #- kewlfft.aur
     - role: desktop
     - cloudalchemy.node_exporter

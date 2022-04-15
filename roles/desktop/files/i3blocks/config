@@ -17,12 +17,29 @@ interval=10
 STEP=5%
 MIXER=default
 
-# [bandwidth]
-# markup=pango
-
 [iface]
 color=#00FF00
 interval=10F
+
+[bandwidth3]
+interval=persist
+LABEL=⇅ 
+DT=2
+
+[disk-io]
+interval=persist
+instance=/^nvme0n1/
+LABEL=💾 
+WIDTH=4
+DT=2
+MB_ONLY=1
+
+[disk_usage]
+label=🖴 
+instance=/
+interval=30
+#TODO hack in disk_usage for TB, create PR
+#command=$HOME/.config/i3blocks/disk_usage/disk_usage format="{used:.1f}G used of {total:.1f} Total beeing {perc_used}%"
 
 [memory]
 label=MEM 
@@ -32,6 +49,10 @@ min_width=2
 label=CPU 
 min_width=CPU 100.00%
 #separator=false
+
+[gpu_load]
+label=GPU 
+min_width=GPU 100% 100%
 
 [battery]
 label=🔋 
