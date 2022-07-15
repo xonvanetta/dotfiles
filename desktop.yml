@@ -4,4 +4,4 @@
   connection: local
   roles:
     - role: desktop
-    - cloudalchemy.node_exporter
+      #    - cloudalchemy.node_exporter

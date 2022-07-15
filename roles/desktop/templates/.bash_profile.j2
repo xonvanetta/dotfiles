@@ -8,23 +8,20 @@ export EDITOR=/usr/bin/vim
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 export GO111MODULE=on
-##TODO: add variable here for GOPRIVATE
-export GOPRIVATE=gitlab.com*
+
+{% if bash_profile_extra != '' %}
+{{ bash_profile_extra }}
+{% endif %}
 
 # kubectl
 ##TODO: VAR FOR KUBECONFIG
-export KUBECONFIG=$HOME/.kube/config:$HOME/.k3d/kubeconfig-k3s-default.yaml:$HOME/.kube/lennart
+export KUBECONFIG=$HOME/.kube/config:$HOME/.k3d/kubeconfig-k3s-default.yaml
 
 # kube_ps1
 export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_NS_ENABLE=true
 export KUBE_PS1_PREFIX=' ['
 export KUBE_PS1_SUFFIX=]
-
-##TODO: FOREACH LOOP ON VAR
-export __GL_SYNC_TO_VBLANK=1
-export __GL_SYNC_DISPLAY_DEVICE=HDMI-0
-export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=HDMI-0
 
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx

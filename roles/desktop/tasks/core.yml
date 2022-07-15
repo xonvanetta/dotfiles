@@ -5,27 +5,30 @@
       - arandr
       - bind
       - clamav
+      - dmidecode
       - docker
       - gnu-netcat
-      - iotop
       - htop
+      - iotop
+      - jq
       - man-db
       - ncdu
+      - net-tools
       - network-manager-applet
       - networkmanager
-      - net-tools
       - noto-fonts-cjk
       - noto-fonts-emoji
       - noto-fonts-extra
+      - ntp
       - openssh
       - pciutils
       - pwgen
+      - python
+      - rsync
+      - sshpass
       - tcpdump
       - ttf-jetbrains-mono
-      - etcher
-      - ntp
       - unzip
-      - sshpass
   tags: core
 
 - name: Ensure group docker exists
@@ -55,12 +58,3 @@
     - docker
     - ntpd
   tags: core
-
-# - name: localectl
-#   community.general.locale_gen:
-#     name: "{{ item }}"
-#     state: present
-#   with_items:
-#    - "en_GB.UTF-8"
-#    - "sv_SE.UTF-8"
-#   tags: core

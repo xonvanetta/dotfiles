@@ -1,9 +1,4 @@
 
-#
-##keyboard layout
-#localectl set-x11-keymap se
-
-
 - name: pre_load vars based on hostname
   ansible.builtin.include_vars:
     file: "{{ ansible_hostname }}.yml"
@@ -18,51 +13,13 @@
 - include_tasks: git.yml
   tags: git
 
-- name: Install audio packages
-  become: true
-  community.general.pacman:
-    name:
-      - alsa-lib
-      - alsa-utils
-      - pulseaudio
-      - pavucontrol
-      - pulseaudio-alsa
-  tags: audio
-
-- name: Fix Cork for pulse
-  become: true
-  ansible.builtin.lineinfile:
-    path: /etc/pulse/default.pa
-    regexp: '^load-module module-role-cork'
-    line: '#load-module module-role-cork'
-  tags: audio
-
 - include_tasks: i3.yml
   tags: i3
 
-- name: Install code packages
-  become: true
-  community.general.pacman:
-    name:
-      - vim
-      - code
-      - go
-      - nvm
-      - kubectl
-      - kubectx
-      - dbeaver
-      - terraform
-  tags: code
+- include_tasks: audio.yml
+  tags: audio
 
-- name: Install code packages
-  kewlfft.aur.aur:
-    name:
-      - jetbrains-toolbox
-      - rancher-k3d-bin
-      - stern-bin
-      - postman-bin
-      - google-chrome
-      - go-jsonnet
+- include_tasks: code.yml
   tags: code
 
 - name: Install additional packages pacman

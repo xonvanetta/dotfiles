@@ -1,0 +1,44 @@
+- name: Install code packages pacman
+  become: true
+  community.general.pacman:
+    name:
+      - vim
+      - code
+      - go
+      - kubectl
+      - kubectx
+      - dbeaver
+      - terraform
+  tags: code
+
+- name: Install code packages aur
+  kewlfft.aur.aur:
+    name:
+      - jetbrains-toolbox
+      - rancher-k3d-bin
+      - stern-bin
+      - postman-bin
+      - google-chrome
+      - etcher
+      - nvm
+  tags: code
+
+- name: install go packages
+  command: go install {{ item.url }}
+  args: 
+    creates: "{{ ansible_env.HOME }}/go/bin/{{ item.bin }}"
+  with_items: 
+  - { bin: jsonnetfmt, url: github.com/google/go-jsonnet/cmd/jsonnetfmt@latest }  
+  - { bin: gojsontoyaml, url: github.com/brancz/gojsontoyaml@latest }  
+  - { bin: jb, url: github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest } 
+  - { bin: jsonnet, url: github.com/google/go-jsonnet/cmd/jsonnet@latest }
+  tags: code
+
+
+- name: install additional go packages
+  command: go install {{ item.url }}
+  args: 
+    creates: "{{ ansible_env.HOME }}/go/bin/{{ item.bin }}"
+  with_items: "{{ additionalGoInstalls }}"
+  when: additionalGoInstalls | length > 0
+  tags: code

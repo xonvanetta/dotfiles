@@ -7,5 +7,6 @@ git_config_extra: ""
 
 additionalPackages: []
 additionalPackagesAur: []
+additionalGoInstalls: []
 
 etc_X11_xorg_conf: ""

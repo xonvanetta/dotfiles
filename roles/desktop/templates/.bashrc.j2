@@ -8,17 +8,20 @@
 [ -r /opt/kube-ps1/kube-ps1.sh ] && . /opt/kube-ps1/kube-ps1.sh
 [ -r /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
 [ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
-#TODO: add variable here
+
 
 source <(kubectl completion bash)
 source <(stern --completion bash)
-#TODO: add variable here
+
+{% if bash_rc_completion_extra != '' %}
+{{ bash_rc_completion_extra }}
+{% endif %}
 
 ## Bash History
 HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=25000
 HISTFILESIZE=25000
-HISTTIMEFORMAT="%d/%m/%y %T"
+HISTTIMEFORMAT="%d/%m/%y %T "
 shopt -s histappend
 
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"

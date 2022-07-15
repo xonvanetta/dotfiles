@@ -50,6 +50,13 @@ label=CPU
 min_width=CPU 100.00%
 #separator=false
 
+[temperature]
+label=
+#T_WARN=70
+#T_CRIT=90
+SENSOR_CHIP="thinkpad-isa-0000"
+
+
 [gpu_load]
 label=GPU 
 min_width=GPU 100% 100%
