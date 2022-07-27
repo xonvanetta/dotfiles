@@ -4,6 +4,8 @@
     name:
       - arandr
       - bind
+      - blueman
+      - bluez
       - clamav
       - dmidecode
       - docker

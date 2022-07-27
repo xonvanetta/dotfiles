@@ -32,6 +32,7 @@
   - { bin: gojsontoyaml, url: github.com/brancz/gojsontoyaml@latest }  
   - { bin: jb, url: github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest } 
   - { bin: jsonnet, url: github.com/google/go-jsonnet/cmd/jsonnet@latest }
+  - { bin: goimports, url: golang.org/x/tools/cmd/goimports@latest }
   tags: code
 
 

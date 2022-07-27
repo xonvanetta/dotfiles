@@ -135,6 +135,7 @@ exec xautolock -time 5 -locker '$lock'
 exec --no-startup-id 'pulseaudio -D'
 exec --no-startup-id 'diodon'
 exec --no-startup-id 'nm-applet'
+exec --no-startup-id 'blueman-applet'
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
