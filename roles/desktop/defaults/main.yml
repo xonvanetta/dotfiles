@@ -9,4 +9,8 @@ additionalPackages: []
 additionalPackagesAur: []
 additionalGoInstalls: []
 
+bash_profile_extra: ""
+bash_rc_completion_extra: ""
+bash_alias_extra: ""
+
 etc_X11_xorg_conf: ""
