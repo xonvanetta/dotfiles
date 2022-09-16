@@ -9,6 +9,7 @@
       - kubectx
       - dbeaver
       - terraform
+      - openldap
   tags: code
 
 - name: Install code packages aur

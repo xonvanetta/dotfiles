@@ -12,7 +12,9 @@
       - gnu-netcat
       - htop
       - iotop
+      - inetutils
       - jq
+      - hey
       - man-db
       - ncdu
       - net-tools
@@ -45,6 +47,13 @@
     name: "{{ ansible_env.USER }}"
     groups: docker
     append: yes
+  tags: core
+
+- name: Set locale
+  become: true
+  community.general.locale_gen:
+    name: sv_SE.UTF-8
+    state: present
   tags: core
 
 - name: start core services
