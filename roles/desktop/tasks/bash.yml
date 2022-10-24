@@ -10,7 +10,7 @@
 - name: Install bash packages
   kewlfft.aur.aur:
     name:
-      - diodon-git
+      - diodon
       - urxvt-resize-font-git
       - kube-ps1
   tags: bash

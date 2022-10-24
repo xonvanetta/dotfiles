@@ -20,7 +20,6 @@
 - name: Install i3 packages
   kewlfft.aur.aur:
     name:
-      - diodon-git
       - i3lock-color-git
   tags: i3
 
