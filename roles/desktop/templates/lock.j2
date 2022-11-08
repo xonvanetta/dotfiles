@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ -e /tmp/.lock ] && exit 0
+
+#echo "`date  +"%Y-%m-%dT%H:%M:%S"` LOCKED" >> /var/log/i3lock
+
+touch /tmp/.lock
+
+i3lock -B 3 -k --date-str %Y-%m-%d -n 
+
+rm /tmp/.lock
+
+#echo "`date  +"%Y-%m-%dT%H:%M:%S"` UNLOCKED" >> /var/log/i3lock

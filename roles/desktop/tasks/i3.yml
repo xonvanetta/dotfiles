@@ -39,6 +39,14 @@
     - ".config/i3/config"
   tags: i3
 
+- name: "copy lock"
+  become: true
+  ansible.builtin.template:
+    src: "lock.j2"
+    mode: a+x
+    dest: "/usr/local/bin/lock"
+  tags: i3
+
 - name: "Copy etc/X11/xorg.conf"
   become: true
   ansible.builtin.copy:

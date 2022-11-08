@@ -22,6 +22,9 @@ set $right Right
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# disable the tiling drag feature
+tiling_drag off
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -125,7 +128,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Lock screen bind and autolock screen
-set $lock i3lock -B 3 -k --date-str %Y-%m-%d
+set $lock lock
 bindsym $mod+l exec $lock
 
 bindsym Ctrl+Shift+h exec 'diodon'
