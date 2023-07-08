@@ -54,8 +54,6 @@ min_width=CPU 100.00%
 label=
 #T_WARN=70
 #T_CRIT=90
-SENSOR_CHIP="thinkpad-isa-0000"
-
 
 [gpu_load]
 label=GPU 
