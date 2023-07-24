@@ -9,8 +9,8 @@ fi
 
 [[ -f $HOME/.Xresources ]] && xrdb -merge -I$HOME $HOME/.Xresources
 
-{% if xrandr_start_options != '' %}
-xrandr {{ xrandr_start_options }}
+{% if start_options != '' %}
+{{ start_options }}
 {% endif %}
 
 xset -b

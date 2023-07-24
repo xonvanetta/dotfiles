@@ -1,4 +1,4 @@
-xrandr_start_options: ""
+start_options: ""
 
 git_config_name: ""
 git_config_email: ""

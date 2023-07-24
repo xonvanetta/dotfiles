@@ -1,4 +1,4 @@
-xrandr_start_options: "--output HDMI-0 --rate 144 --mode 2560x1440 --pos 2560x0 --rotate normal --primary --output DP-4.8 --mode 2560x1440 --pos 0x0 --rotate normal --output DP-4.1 --off"
+start_options: "xrandr --output HDMI-0 --rate 144 --mode 2560x1440 --pos 2560x0 --rotate normal --primary --output DP-4.8 --mode 2560x1440 --pos 0x0 --rotate normal --output DP-4.1 --off"
 
 additionalPackages:
   - linux510-nvidia

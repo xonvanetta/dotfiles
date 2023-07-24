@@ -47,17 +47,23 @@ min_width=2
 
 [cpu_usage]
 label=CPU 
-min_width=CPU 100.00%
+min_width=CPU 10.0%
 #separator=false
 
 [temperature]
-label=
-#T_WARN=70
-#T_CRIT=90
+label=CPU 
+SENSOR_CHIP=k10temp-pci-00c3
 
 [gpu_load]
 label=GPU 
-min_width=GPU 100% 100%
+min_width=GPU 1% 1%
+GPU_BRAND=AMD
+
+[temperature]
+label=GPU 
+SENSOR_CHIP=amdgpu-pci-0a00
+T_WARN=80
+T_CRIT=90
 
 [battery]
 label=🔋 
