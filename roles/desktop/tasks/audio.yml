@@ -8,6 +8,7 @@
       - pulseaudio-bluetooth
       - pavucontrol
       - pulseaudio-alsa
+  when: ansible_facts['distribution'] == 'Archlinux'
   tags: audio
 
 - name: Fix Cork for pulse

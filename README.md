@@ -2,7 +2,6 @@
 
 ## TODO
 * add timer/config based security scans with clamAV
-* fix localectl or add to .xinitrc to set locale
 
 ## install before
 * python, python-virtualenv and one more
@@ -12,3 +11,7 @@
 
 ## install requirements
 `ansible-galaxy install -r requirements.yml`
+
+### buguntu
+
+1. `#use-ssh-agent` in /etc/X11/Xsession

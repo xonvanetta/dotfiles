@@ -23,7 +23,7 @@ set $right Right
 floating_modifier $mod
 
 # disable the tiling drag feature
-tiling_drag off
+# tiling_drag off
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -135,7 +135,7 @@ bindsym Ctrl+Shift+h exec 'diodon'
 
 # autostart
 exec xautolock -time 5 -locker '$lock'
-exec --no-startup-id 'pulseaudio -D'
+#exec --no-startup-id 'pulseaudio -D'
 exec --no-startup-id 'diodon'
 exec --no-startup-id 'nm-applet'
 exec --no-startup-id 'blueman-applet'

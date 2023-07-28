@@ -1,4 +1,4 @@
-- name: Install core packages
+- name: Install core packages pacman
   become: true
   community.general.pacman:
     name:
@@ -7,6 +7,7 @@
       - blueman
       - bluez
       - clamav
+      - curl
       - dmidecode
       - docker
       - gnu-netcat
@@ -33,9 +34,40 @@
       - tcpdump
       - ttf-jetbrains-mono
       - unzip
+  when: ansible_facts['distribution'] == 'Archlinux'
+  tags: core
+
+- name: Install core packages apt
+  become: true
+  ansible.builtin.apt:
+    name:
+      - arandr
+      - blueman
+      - clamav
+      - curl
+      - dmidecode
+      - docker.io
+      - netcat
+      - htop
+      - iotop
+      - jq
+      - hey
+      - ncdu
+      - net-tools
+      - ntp
+      - ssh
+      - pciutils
+      - pwgen
+      - rsync
+      - sshpass
+      - tcpdump
+      - fonts-jetbrains-mono
+      - unzip
+  when: ansible_facts['distribution'] == 'Ubuntu'
   tags: core
 
 - name: Ensure group docker exists
+  become: true
   ansible.builtin.group:
     name: docker
     state: present
@@ -68,4 +100,5 @@
     - clamav-freshclam
     - docker
     - ntpd
+  when: ansible_facts['distribution'] == 'Archlinux'
   tags: core

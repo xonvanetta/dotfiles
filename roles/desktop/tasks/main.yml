@@ -32,3 +32,16 @@
   kewlfft.aur.aur:
     name: "{{ additionalPackagesAur }}"
   when: additionalPackagesAur | length > 0
+
+- name: Install additional packages snap
+  become: true
+  community.general.snap:
+    name: "{{ additionalPackagesSnap }}"
+    classic: true
+  when: additionalPackagesSnap | length > 0
+
+- name: Install additional packages apt
+  become: true
+  ansible.builtin.apt:
+    name: "{{ additionalPackagesApt }}"
+  when: additionalPackagesApt | length > 0

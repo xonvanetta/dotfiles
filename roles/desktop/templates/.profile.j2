@@ -13,8 +13,8 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 export GO111MODULE=on
 
-{% if bash_profile_extra != '' %}
-{{ bash_profile_extra }}
+{% if profile_extra != '' %}
+{{ profile_extra }}
 {% endif %}
 
 # kubectl
@@ -25,7 +25,3 @@ export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_NS_ENABLE=true
 export KUBE_PS1_PREFIX=' ['
 export KUBE_PS1_SUFFIX=]
-
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi

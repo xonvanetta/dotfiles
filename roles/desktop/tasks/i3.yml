@@ -1,11 +1,11 @@
-- name: Install i3 packages
+- name: Install i3 packages pacman
   become: true
   community.general.pacman:
     name:
       - xorg-server
       - xorg-xinit
       - xorg-xev
-      - xfce4-notifyd
+      # - xfce4-notifyd
       - i3-wm
       - i3status
       - i3blocks
@@ -15,12 +15,45 @@
       - yad
       - sysstat
       - gnome-screenshot
+  when: ansible_facts['distribution'] == 'Archlinux'
   tags: i3
 
-- name: Install i3 packages
+- name: Install i3 packages apt
+  become: true
+  ansible.builtin.apt:
+    name:
+      - xorg
+      - xinit
+      # - xorg-xev
+      # - xfce4-notifyd
+      - i3-wm
+      - i3status
+      # - i3blocks BUILD self since out dated 
+      - xautolock
+      - dmenu
+      - xdotool
+      - yad
+      - sysstat
+      - gnome-screenshot
+      - libxcb-composite0 #for i3lock-color
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: i3
+
+- name: Install i3 packages aur
   kewlfft.aur.aur:
     name:
       - i3lock-color-git
+  when: ansible_facts['distribution'] == 'Archlinux'
+  tags: i3
+
+- name: Download i3lock to /usr/local/bin
+  become: true
+  ansible.builtin.get_url:
+    url: https://github.com/Raymo111/i3lock-color/releases/download/2.13.c.4/i3lock
+    dest: "/usr/local/bin/i3lock"
+    checksum: sha512:acf3365b5e2fadcb187cf1a6b015a1dd3e2105bbf7e513f1882903d31cf1858dec12c32f12b80c367d3ace9d10b37ba6ad5497e12a3f9a55835164dd7c50f050
+    mode: '0755'
+  when: ansible_facts['distribution'] == 'Ubuntu'
   tags: i3
 
 - name: "Ensure fontconfig dir exists"
@@ -29,14 +62,16 @@
     state: directory
   tags: i3
 
-- name: "Copy .xinitrc, .Xresources and i3 config"
+- name: "Copy .xinitrc, .Xresources, profile, i3 config and i3blocks config"
   ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
   with_items:
     - ".xinitrc"
     - ".Xresources"
+    - ".profile"
     - ".config/i3/config"
+    - ".config/i3blocks/config"
   tags: i3
 
 - name: "copy lock"

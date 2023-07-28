@@ -15,11 +15,14 @@ interval=1
 label=🔉 
 interval=10
 STEP=5%
-MIXER=default
+MIXER=pulse
 
 [iface]
-color=#00FF00
 interval=10F
+
+[iface]
+interval=10F
+IFACE=ppp0
 
 [bandwidth3]
 interval=persist
@@ -35,7 +38,7 @@ DT=2
 MB_ONLY=1
 
 [disk_usage]
-label=🖴 
+label=🛢️ 
 instance=/
 interval=30
 #TODO hack in disk_usage for TB, create PR
@@ -48,31 +51,27 @@ min_width=2
 [cpu_usage]
 label=CPU 
 min_width=CPU 10.0%
+COLOR_NORMAL=#FFFFFF
 #separator=false
 
 [temperature]
 label=CPU 
-SENSOR_CHIP=k10temp-pci-00c3
+SENSOR_CHIP={{ i3blocks_cpu_sensor_chip }}
 
+{% if i3blocks_gpu_sensor_chip != "" %}
 [gpu_load]
 label=GPU 
 min_width=GPU 1% 1%
-GPU_BRAND=AMD
+#GPU_BRAND=AMD
 
 [temperature]
 label=GPU 
-SENSOR_CHIP=amdgpu-pci-0a00
-T_WARN=80
-T_CRIT=90
+SENSOR_CHIP={{ i3blocks_gpu_sensor_chip }}
+{% endif %}
 
 [battery]
 label=🔋 
 interval=30
-
-# [time]
-# STRFTIME_FORMAT=%Y-%m-%d %H:%M
-# TZONES=,
-# DEFAULT_TZ=,
 
 [calendar]
 LABEL=📅 

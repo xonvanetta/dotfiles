@@ -1,18 +1,65 @@
-- name: Install bash packages
+- name: Install bash packages pacman
   become: true
   community.general.pacman:
     name:
       - rxvt-unicode
       - bash-completion
       - fzf
+  when: ansible_facts['distribution'] == 'Archlinux'
   tags: bash
 
-- name: Install bash packages
+- name: Install bash packages apt
+  become: true
+  ansible.builtin.apt:
+    name:
+      - rxvt-unicode
+      - bash-completion
+      - fzf
+      - diodon
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: bash
+
+- name: Ensure /opt/kube-ps1 exists
+  become: true
+  ansible.builtin.file:
+    path: "/opt/kube-ps1"
+    state: directory
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: bash
+
+- name: Download kube-ps1 to /opt/kube-ps1/kube-ps1.sh
+  become: true
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+    dest: /opt/kube-ps1/kube-ps1.sh
+    checksum: sha512:52a08c4df9e9bcfe6386dde86d5e63d9c583f299c7c1a1bf09a915135d9ae167f982f2ea66eec06b7934c0eeff014f0dcb228ff3d7d74fd2da3deadf2ada3afd
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: bash
+
+- name: Install bash packages aur
   kewlfft.aur.aur:
     name:
       - diodon
       - urxvt-resize-font-git
       - kube-ps1
+  when: ansible_facts['distribution'] == 'Archlinux'
+  tags: bash
+
+- name: Ensure {{ ansible_env.HOME }}/.urxvt/ext exists
+  become: true
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.urxvt/ext"
+    state: directory
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: bash
+
+- name: Download urxvt-resize-font to $HOME/.urxvt/ext
+  become: true
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/simmel/urxvt-resize-font/master/resize-font
+    dest: "{{ ansible_env.HOME }}/.urxvt/ext/resize-font"
+    checksum: sha512:95590da082b672747d28fbe6e24f1981dbaa1d739d9c244056516d23dd1ca1ce0c110f793c4f2ffe8aa55f1c0e521cd8da5bfc98fe077ce30e58fad334c27c51
+  when: ansible_facts['distribution'] == 'Ubuntu'
   tags: bash
 
 - name: "Copy bash files"

@@ -10,6 +10,35 @@
       - dbeaver
       - terraform
       - openldap
+  when: ansible_facts['distribution'] == 'Archlinux'
+  tags: code
+
+- name: Install code packages snap
+  become: true
+  community.general.snap:
+    name:
+      - code
+      - go
+      - kubectl
+      - kubectx
+      - terraform
+      - dbeaver-ce
+      - intellij-idea-ultimate
+    classic: true
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: code
+
+- name: Install code packages apt
+  become: true
+  ansible.builtin.apt:
+    name:
+      - vim
+      - ldap-utils
+      - google-chrome-stable
+      #- rancher-k3d-bin
+      #- etcher
+      #- nvm
+  when: ansible_facts['distribution'] == 'Ubuntu'
   tags: code
 
 - name: Install code packages aur
@@ -18,10 +47,11 @@
       - jetbrains-toolbox
       - rancher-k3d-bin
       - stern-bin
-      - postman-bin
+     #- postman-bin
       - google-chrome
       - etcher
       - nvm
+  when: ansible_facts['distribution'] == 'Archlinux'
   tags: code
 
 - name: install go packages

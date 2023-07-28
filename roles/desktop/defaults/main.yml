@@ -9,7 +9,11 @@ additionalPackages: []
 additionalPackagesAur: []
 additionalGoInstalls: []
 
+i3blocks_cpu_sensor_chip: ""
+i3blocks_gpu_sensor_chip: ""
+
 bash_profile_extra: ""
+profile_extra: ""
 bash_rc_completion_extra: ""
 bash_alias_extra: ""
 
