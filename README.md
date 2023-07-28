@@ -15,3 +15,5 @@
 ### buguntu
 
 1. `#use-ssh-agent` in /etc/X11/Xsession
+2. https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/1922414
+3. manully build `i3blocks` from repo
