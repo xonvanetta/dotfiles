@@ -21,6 +21,7 @@
   kewlfft.aur.aur:
     name:
       - i3lock-color-git
+      - xfce-polkit
   tags: i3
 
 - name: "Ensure fontconfig dir exists"
