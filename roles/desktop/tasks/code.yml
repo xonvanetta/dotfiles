@@ -54,6 +54,16 @@
   when: ansible_facts['distribution'] == 'Archlinux'
   tags: code
 
+- name: Download k3d to /usr/local/bin
+  become: true
+  ansible.builtin.get_url:
+    url: https://github.com/k3d-io/k3d/releases/download/v5.5.1/k3d-linux-amd64
+    dest: "/usr/local/bin/k3d"
+    checksum: sha512:025340f3fe8bfab37d96562ce742ea986dfed226036c32fb9de8d7c018d4f7e004703142c8d738c9a2b7fd3ed1a4b83e8c80147af7c5a34843c011fce260772d
+    mode: '0755'
+  when: ansible_facts['distribution'] == 'Ubuntu'
+  tags: code
+
 - name: install go packages
   command: go install {{ item.url }}
   args: 
@@ -65,7 +75,6 @@
   - { bin: jsonnet, url: github.com/google/go-jsonnet/cmd/jsonnet@latest }
   - { bin: goimports, url: golang.org/x/tools/cmd/goimports@latest }
   tags: code
-
 
 - name: install additional go packages
   command: go install {{ item.url }}

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "commit type is: $2"
 
 if [[ $2 != '' ]]; then
