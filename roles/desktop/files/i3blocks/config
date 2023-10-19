@@ -69,6 +69,10 @@ T_CRIT=90
 label=🔋 
 interval=30
 
+[mouse_battery]
+label=🖱
+interval=60
+
 # [time]
 # STRFTIME_FORMAT=%Y-%m-%d %H:%M
 # TZONES=,
