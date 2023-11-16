@@ -7,8 +7,11 @@
 ## install before
 * python, python-virtualenv and one more
 
+## running post install from archinstall
+First `sudo su` as the user created to then run the magic
+
 ## running this magic
-`ansible-playbook desktop.yml -k -K`
+`ansible-playbook desktop.yml -K`
 
 ## install requirements
 `ansible-galaxy install -r requirements.yml`
