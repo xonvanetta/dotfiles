@@ -15,6 +15,7 @@
       - yad
       - sysstat
       - gnome-screenshot
+      - lightdm
   tags: i3
 
 - name: Install i3 packages
@@ -22,6 +23,7 @@
     name:
       - i3lock-color-git
       - xfce-polkit
+      - lightdm-mini-greeter
   tags: i3
 
 - name: "Ensure fontconfig dir exists"
@@ -56,21 +58,21 @@
   tags: i3
   when: etc_X11_xorg_conf | length > 0
 
-- name: "set XkbLayout se"
-  become: true
-  ansible.builtin.copy:
-    content: |
-          # Written by systemd-localed(8), read by systemd-localed and Xorg. It's
-          # probably wise not to edit this file manually. Use localectl(1) to
-          # instruct systemd-localed to update it.
-          Section "InputClass"
-            Identifier "system-keyboard"
-            MatchIsKeyboard "on"
-            Option "XkbLayout" "se"
-          EndSection
-
-    dest: "/etc/X11/xorg.conf.d/00-keyboard.conf"
-  tags: i3
+#- name: "set XkbLayout se" should come from archinstall now
+#  become: true
+#  ansible.builtin.copy:
+#    content: |
+#          # Written by systemd-localed(8), read by systemd-localed and Xorg. It's
+#          # probably wise not to edit this file manually. Use localectl(1) to
+#          # instruct systemd-localed to update it.
+#          Section "InputClass"
+#            Identifier "system-keyboard"
+#            MatchIsKeyboard "on"
+#            Option "XkbLayout" "se"
+#          EndSection
+#
+#    dest: "/etc/X11/xorg.conf.d/00-keyboard.conf"
+#  tags: i3
 
 #TODO add current net bandwidth usage, current io usage in mb
 - name: "Copy i3blocks"
