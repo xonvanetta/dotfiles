@@ -7,7 +7,12 @@
 ## install before
 * python, python-virtualenv and one more
 
-## running post install from archinstall
+## Archinstall
+
+### URL
+`https://raw.githubusercontent.com/xonvanetta/dotfiles/master/user_configuration.json`
+
+### post install
 First `sudo su` as the user created to then run the magic
 
 ## running this magic
