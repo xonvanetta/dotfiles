@@ -11,11 +11,11 @@ interval=1
 # [spotify]
 # interval=10
 
-[volume]
+[volume-pipewire]
 label=🔉 
 interval=10
-STEP=5%
-MIXER=default
+#STEP=5%
+#MIXER=default
 
 [iface]
 color=#00FF00

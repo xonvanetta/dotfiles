@@ -2,18 +2,18 @@
   become: true
   community.general.pacman:
     name:
-      - alsa-lib
-      - alsa-utils
-      - pulseaudio
-      - pulseaudio-bluetooth
+#      - alsa-lib
+#      - alsa-utils
+#      - pulseaudio
+#      - pulseaudio-bluetooth
       - pavucontrol
-      - pulseaudio-alsa
+#      - pulseaudio-alsa
   tags: audio
 
-- name: Fix Cork for pulse
-  become: true
-  ansible.builtin.lineinfile:
-    path: /etc/pulse/default.pa
-    regexp: '^load-module module-role-cork'
-    line: '#load-module module-role-cork'
-  tags: audio
+#- name: Fix Cork for pulse
+#  become: true
+#  ansible.builtin.lineinfile:
+#    path: /etc/pulse/default.pa
+#    regexp: '^load-module module-role-cork'
+#    line: '#load-module module-role-cork'
+#  tags: audio
