@@ -14,8 +14,8 @@ interval=1
 [volume-pipewire]
 label=🔉 
 interval=10
-#STEP=5%
-#MIXER=default
+USE_DESCRIPTION=1
+LONG_FORMAT=${VOL}% [${NAME}]
 
 [iface]
 color=#00FF00

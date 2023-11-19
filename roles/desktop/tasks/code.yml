@@ -18,7 +18,6 @@
       - jetbrains-toolbox
       - rancher-k3d-bin
       - stern-bin
-      - postman-bin
       - google-chrome
       - etcher
       - nvm

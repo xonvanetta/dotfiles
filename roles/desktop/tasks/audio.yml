@@ -3,7 +3,7 @@
   community.general.pacman:
     name:
 #      - alsa-lib
-#      - alsa-utils
+      - alsa-utils
 #      - pulseaudio
 #      - pulseaudio-bluetooth
       - pavucontrol
