@@ -2,10 +2,6 @@
 
 ## TODO
 * add timer/config based security scans with clamAV
-* fix localectl or add to .xinitrc to set locale
-
-## install before
-* python, python-virtualenv and one more
 
 ## Archinstall
 

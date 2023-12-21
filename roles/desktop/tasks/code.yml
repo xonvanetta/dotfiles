@@ -10,6 +10,7 @@
       - dbeaver
       - terraform
       - openldap
+      - sops
   tags: code
 
 - name: Install code packages aur
